@@ -8,9 +8,10 @@ export function useUserContext(){
     return useContext(UserContext)
 }
 export function UserProvider({children}) {
-    const [currentUser, setcurrentUser] = useState()
     const [userType, setuserType] = useState()
     const [schoolId, setschoolId] = useState()
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [authToken, setAuthToken] = useState();
 
 
 
@@ -18,10 +19,11 @@ export function UserProvider({children}) {
          const authToken= FirebaseConfig.auth().signInWithEmailAndPassword(userEmail,password)
          .then(user=>
             {
-                console.log(authToken)
                 getUserDetails(userEmail)
-                
-             })
+                setIsAuthenticated(true);
+                setAuthToken(authToken)
+
+            })
          .catch(error=>
             {
                 console.log(error.message)
@@ -30,8 +32,8 @@ export function UserProvider({children}) {
     }
     useEffect(()=>{
         const unsubscribe=FirebaseConfig.auth().onAuthStateChanged(user=>{
-            setcurrentUser(user)
-            console.log(user.email)
+            setAuthToken(user)
+
             
         })
         return unsubscribe
@@ -42,26 +44,23 @@ export function UserProvider({children}) {
            // console.log(snapshot.docs[2].data().userType)
             snapshot.docs.forEach(element => {
                // console.log(currentUser.email,element.data())
-                if(element.data().email===currentUser.email){
+                if(element.data().email===authToken.email){
                     
                     setuserType(element.data().userType)
                     setschoolId(element.data().schoolId)
-                    console.log(userType,schoolId)
                 }
                
             });
         })
-        
-        console.log(currentUser)
 
 
     }
     const userInfo={
-        currentUser,
         userType,
         schoolId,
+        isAuthenticated,
+        authToken,
         login
-
     }
     return (
         <UserContext.Provider value={userInfo}>

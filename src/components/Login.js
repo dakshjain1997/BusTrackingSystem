@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
 import {Card,Form,Button} from 'react-bootstrap'
 import {useUserContext} from './UserContext'
-
+import { useHistory } from "react-router-dom";
 //import {AuthProcess} from './AuthProcess'
 
 function Login()
  {
     const [userEmail, setUserEmail] = useState("")    //used hook(useState) to store users email from jsx
     const [password, setPassword] = useState("")      //used hook(useState) to store users password from jsx
-    const {login} =useUserContext()     
+    const {login, isAuthenticated} = useUserContext()
+     const history = useHistory();
 
     function HandleSubmit(e){
         e.preventDefault()                              //this functions prevents the page to reload in case of submition of form
         login(userEmail,password)
-        //console.log(userEmail,password);               //to check userid,passwored in console 
+        if(isAuthenticated) {
+            history.push("/dashboard");
+        }
+
+        //console.log(userEmail,password);               //to check userid,passwored in console
         //console.log(a)       
     }
 
