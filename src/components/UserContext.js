@@ -38,11 +38,11 @@ export function UserProvider({children}) {
     },[])
     
     function getUserDetails(userEmail){
-        db.collection("USER").onSnapshot(snapshot=>{
-            //console.log(snapshot.docs[0].data().userType)
+        db.collection("users").onSnapshot(snapshot=>{
+           // console.log(snapshot.docs[2].data().userType)
             snapshot.docs.forEach(element => {
-                
-                if(element.data().emailId===currentUser.email){
+               // console.log(currentUser.email,element.data())
+                if(element.data().email===currentUser.email){
                     
                     setuserType(element.data().userType)
                     setschoolId(element.data().schoolId)
