@@ -12,13 +12,11 @@ const AuthContextProvider = (props) => {
     const [authToken, setAuthToken] = useState("");
 
     function redirect(userType){
-        if(userType === "school") {
+        if(userType === "School") {
             console.log("trying to push in condition")
             History.push("/StudentForm");
         }
-        else if(userType === "parent"){
-
-        }
+       
     }
 
     const valuesToBePassed={

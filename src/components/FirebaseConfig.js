@@ -1,12 +1,13 @@
 import firebase from 'firebase'
 
 var firebaseConfig = {
-    apiKey: "AIzaSyDXrCvU8U2LkGYs8QSm6UZTjyyIeHVhUWQ",
-    authDomain: "testproject-f5836.firebaseapp.com",
-    projectId: "testproject-f5836",
-    storageBucket: "testproject-f5836.appspot.com",
-    messagingSenderId: "540294945937",
-    appId: "1:540294945937:web:dc541786c0da07fe447330"
+  apiKey: "AIzaSyCTD2GdF5zEjvFrbcTeczm-rccYQYEmx94",
+  authDomain: "studentbustracking-8c643.firebaseapp.com",
+  projectId: "studentbustracking-8c643",
+  storageBucket: "studentbustracking-8c643.appspot.com",
+  messagingSenderId: "618915197110",
+  appId: "1:618915197110:web:a5ada004b24bf0e185f617"
+
   };
 
   const FirebaseInstance=firebase.initializeApp(firebaseConfig)

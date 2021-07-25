@@ -20,9 +20,11 @@ function Login()
                 setIsAuthenticated(true);
                 setAuthToken(authToken);
 
-                db.collection("users").onSnapshot(snapshot=>{
+                db.collection("Users").onSnapshot(snapshot=>{
                     snapshot.docs.forEach(element => {
-                        if(element.data().email===user.user.email){
+                        //console.log("i")
+                        if(element.data().emailId===user.user.email){
+                            //console.log("in iiff")
                             setUserType(element.data().userType)
                             setschoolId(element.data().schoolId)
                             redirect(element.data().userType);

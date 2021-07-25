@@ -2,6 +2,8 @@ import React, {useContext, useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {db} from './FirebaseConfig'
 import {AuthContext} from '../context/AuthContext'
+import CreateUser from './CreateUser'
+
 
 function StudentForm()
 {
@@ -10,31 +12,40 @@ function StudentForm()
     const [Address, setAddress] = useState("")
     const [State, setState] = useState("")
     const [City, setCity] = useState("")
-    const [PinCode, setPinCode] = useState("")
+    const [Country, setCountry] = useState("")
+    const [PicDropLocation, setPicDropLocation] = useState("")
+    const [BusRoute, setBusRoute] = useState("")
+    const [BusNumber, setBusNumber] = useState("")
     const [ParentName, setParentName] = useState("")
     const [ParentPhoneNumber, setParentPhoneNumber] = useState("")
     const [ParentEmail, setParentEmail] = useState("")
 
     const {schoolId} = useContext(AuthContext)
 
+  
+
     function HandleSubmit(e){
         e.preventDefault()
         StudentInfo()
+        CreateUser(ParentEmail,"parent")
     }
 
     function StudentInfo(){
         console.log(schoolId)
-        db.collection("School").doc(schoolId).collection("Students").doc(RollNumber)
+        db.collection("Schools").doc(schoolId).collection("Students").doc(RollNumber)
             .set({
-                StudentName:StudentName,
-                RollNumber:RollNumber,
-                Address:Address,
-                City:City,
-                State:State,
-                PinCode:PinCode,
-                ParentName:ParentName,
-                ParentPhoneNumber:ParentPhoneNumber,
-                ParentEmail:ParentEmail,
+                studentName:StudentName,
+                rollNo:RollNumber,
+                address:Address,
+                city:City,
+                state:State,
+                country:Country,
+                picDropLocation:PicDropLocation,
+                busRoute:BusRoute,
+                busNumber:BusNumber,
+                parentName:ParentName,
+                parentContactNumber:ParentPhoneNumber,
+                parentEmail:ParentEmail,
             })
             .then(() => {
                 alert(" Student Detail has been submiteed");
@@ -73,9 +84,24 @@ function StudentForm()
                 <Form.Control type="text" value={State} onChange={(e)=>setState(e.target.value)} placeholder="110011" required />
             </Form.Group>
 
-            <Form.Group id="PinCode">
-                <Form.Label>PinCode</Form.Label>
-                <Form.Control type="text" value={PinCode} onChange={(e)=>setPinCode(e.target.value)} placeholder="110011" required />
+            <Form.Group id="Country">
+                <Form.Label>Country</Form.Label>
+                <Form.Control type="text" value={Country} onChange={(e)=>setCountry(e.target.value)} placeholder="110011" required />
+            </Form.Group>
+
+            <Form.Group id="PicDropLocation">
+                <Form.Label>PicDropLocation</Form.Label>
+                <Form.Control type="text" value={PicDropLocation} onChange={(e)=>setPicDropLocation(e.target.value)} placeholder="110011" required />
+            </Form.Group>
+
+            <Form.Group id="BusRoute">
+                <Form.Label>Bus Route</Form.Label>
+                <Form.Control type="text" value={BusRoute} onChange={(e)=>setBusRoute(e.target.value)} placeholder="110011" required />
+            </Form.Group>
+
+            <Form.Group id="BusNumber">
+                <Form.Label>Bus Number</Form.Label>
+                <Form.Control type="text" value={BusNumber} onChange={(e)=>setBusNumber(e.target.value)} placeholder="110011" required />
             </Form.Group>
 
             <Form.Group id="ParentName">

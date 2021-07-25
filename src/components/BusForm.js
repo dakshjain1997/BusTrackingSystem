@@ -1,17 +1,40 @@
-import React, { useState } from 'react'
+import React, {useContext, useState } from 'react'
 import {Form,Button} from 'react-bootstrap'
+import {db} from './FirebaseConfig'
+import {AuthContext} from '../context/AuthContext'
         
     function BusAttendentForm(){
         const [DriverName, setDriverName] = useState("")
         const [BusRegistrationNumber, setBusRegistrationNumber] = useState("")
         const [BusNumber, setBusNumber] = useState("")
         const [BusRouteNumber, setBusRouteNumber] = useState("")
-        const [PhoneNumber, setPhoneNumber] = useState("")
+        const [DriverContactNumber, setDriverContactNumber] = useState("")
 
+        const {schoolId} = useContext(AuthContext)
         // const {schoolId} = useUserContext()
        
          function HandleSubmit(e){
             e.preventDefault()   
+            BusInfo()
+        }
+        
+        function BusInfo(){
+            console.log(schoolId)
+            db.collection("Schools").doc(schoolId).collection("Buses").doc(BusRouteNumber)
+                .set({
+                    driverName:DriverName,
+                    busRegistrationNumber:BusRegistrationNumber,
+                    busNumber:BusNumber,
+                    busRouteNumber:BusRouteNumber,
+                    driverContactNumber:DriverContactNumber,
+                    
+                })
+                .then(() => {
+                    alert(" Bus Detail has been submiteed");
+                })
+                .catch((error) =>{
+                    alert(error.message);
+                });
         }
         
         return(
@@ -37,9 +60,9 @@ import {Form,Button} from 'react-bootstrap'
                     <Form.Control type="text" value={BusRouteNumber} onChange={(e)=>setBusRouteNumber(e.target.value)} placeholder="City" required />
                 </Form.Group>
 
-                <Form.Group id="PhoneNumber">
-                    <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type="text" value={PhoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} placeholder="110011" required />
+                <Form.Group id="DriverContactNumber">
+                    <Form.Label>DriverContactNumber </Form.Label>
+                    <Form.Control type="text" value={DriverContactNumber} onChange={(e)=>setDriverContactNumber(e.target.value)} placeholder="110011" required />
                 </Form.Group>
 
                 
