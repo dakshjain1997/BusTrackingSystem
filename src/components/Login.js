@@ -8,14 +8,15 @@ function Login()
  {
     const [userEmail, setUserEmail] = useState("")    //used hook(useState) to store users email from jsx
     const [password, setPassword] = useState("")      //used hook(useState) to store users password from jsx
-    const {login, isAuthenticated} = useUserContext()
-     const history = useHistory();
+    const {login,isAuthenticated} = useUserContext()
+    const history = useHistory();
 
     function HandleSubmit(e){
         e.preventDefault()                              //this functions prevents the page to reload in case of submition of form
+        console.log('hi') 
         login(userEmail,password)
         if(isAuthenticated) {
-            history.push("/dashboard");
+            history.push("/StudentForm");
         }
 
         //console.log(userEmail,password);               //to check userid,passwored in console

@@ -43,7 +43,7 @@ export function UserProvider({children}) {
         db.collection("users").onSnapshot(snapshot=>{
            // console.log(snapshot.docs[2].data().userType)
             snapshot.docs.forEach(element => {
-               // console.log(currentUser.email,element.data())
+                console.log(authToken.email,element.data())
                 if(element.data().email===authToken.email){
                     
                     setuserType(element.data().userType)
