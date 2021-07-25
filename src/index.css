@@ -1,3 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish");
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
+
+.material-icons-outlined {
+  font-family: "Material Icons", serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+/* Rules for sizing the icon. */
+.material-icons-outlined.md-24 {
+  font-size: 24px;
+}
+.material-icons-outlined.md-32 {
+  font-size: 32px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons-outlined.md-dark {
+  color: rgba(0, 0, 0, 0);
+}
+.material-icons-outlined.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons-outlined.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons-outlined.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar {
+  position: absolute;
+  width: 300px;
+  height: 900px;
+  left: 0;
+  top: 0;
+  background: #011627;
+}
+.applicationTitle {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 28px;
+}
+.applicationTitle .title {
+  position: absolute;
+  width: 225px;
+  height: 30px;
+  left: 72px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  padding: 0;
+  text-decoration: none;
+
+  font-family: Mulish, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 30px;
+
+  color: #fdfffc;
+}
+
+.addStudentDetails {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 128px;
+}
+
+.titleOption {
+  position: absolute;
+  height: 20px;
+  left: 72px;
+  right: 24px;
+  top: calc(50% - 20px / 2 - 1px);
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+
+  /* Reg 16 (0.2 px) */
+
+  font-family: Mulish, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height */
+
+  letter-spacing: 0.2px;
+
+  color: #fdfffc;
+}
+
+.icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  left: 32px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.addBusAttendant {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 184px;
+}
+
+.addBusDetails {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 240px;
+}
+
+.viewStudentDetails {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 296px;
+}
+
+.viewBusAttendant {
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 352px;
+}
+
+.viewBusDetails{
+  position: absolute;
+  width: 300px;
+  height: 56px;
+  left: 0;
+  top: 408px;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -6,7 +172,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
   position: relative;
-  max-width: 1440px;
+  /*max-width: 1440px;*/
   margin: 0 auto;
   align-items: center;
   background: #fdfffc;

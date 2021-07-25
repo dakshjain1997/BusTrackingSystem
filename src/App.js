@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import StudentForm from "./components/StudentForm.js"
 import BusForm from "./components/BusForm.js"
 import AuthContextProvider from "./context/AuthContext";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
@@ -18,14 +19,17 @@ function App() {
                         </Route>
 
                         <Route path="/dashboard">
+                            <Navbar/>
                             <Dashboard/>
                         </Route>
 
                         <Route path="/Studentform">
+                            <Navbar/>
                             <StudentForm/>
                         </Route>
 
                         <Route path="/BusForm">
+                            <Navbar/>
                             <BusForm/>
                         </Route>
 
