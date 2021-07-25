@@ -1,15 +1,15 @@
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { UserProvider } from "./components/UserContext";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import StudentForm from "./components/StudentForm.js"
 import BusForm from "./components/BusForm.js"
+import AuthContextProvider from "./context/AuthContext";
 
 function App() {
     return (
         <Router>
-            <UserProvider>
+            <AuthContextProvider>
                 <div className="App">
                     <Switch>
 
@@ -31,7 +31,7 @@ function App() {
 
                     </Switch>
                 </div>
-            </UserProvider>
+            </AuthContextProvider>
         </Router>
     );
 }

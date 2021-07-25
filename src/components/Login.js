@@ -1,37 +1,58 @@
-import React, { useState } from 'react'
-import {Card,Form,Button} from 'react-bootstrap'
-import {useUserContext} from './UserContext'
+import React, {useContext, useState} from 'react'
+import {Form,Button} from 'react-bootstrap'
+import {AuthContext} from '../context/AuthContext'
 import { useHistory } from "react-router-dom";
-//import {AuthProcess} from './AuthProcess'
+import FirebaseConfig, {db} from "./FirebaseConfig";
 
 function Login()
  {
-    const [userEmail, setUserEmail] = useState("")    //used hook(useState) to store users email from jsx
-    const [password, setPassword] = useState("")      //used hook(useState) to store users password from jsx
-    const {login,isAuthenticated} = useUserContext()
+    const [userEmail, setUserEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const {isAuthenticated, setIsAuthenticated, setAuthToken, setUserType, setschoolId, schoolId, userType} = useContext(AuthContext);
     const history = useHistory();
 
     function HandleSubmit(e){
-        e.preventDefault()                              //this functions prevents the page to reload in case of submition of form
-        console.log('hi') 
-        login(userEmail,password)
+        e.preventDefault()
+
+        const authToken = FirebaseConfig.auth().signInWithEmailAndPassword(userEmail,password)
+            .then(user=>
+            {
+                setIsAuthenticated(true);
+                setAuthToken(authToken);
+                // console.log(user.user.)
+            })
+            .catch(error=>
+            {
+                console.log(error.message)
+            })
+
+        // FirebaseConfig.auth().onAuthStateChanged(user=>{
+        //     setAuthToken(user)})
+
+        db.collection("users").onSnapshot(snapshot=>{
+            snapshot.docs.forEach(element => {
+                if(element.data().email===authToken.email){
+                    setUserType(element.data().userType)
+                    setschoolId(element.data().schoolId)
+                    console.log(element.data())
+                    console.log(schoolId, element.data().userType, userType, element.data().schoolId)
+                }
+            });
+        })
+
         if(isAuthenticated) {
             history.push("/StudentForm");
         }
-
-        //console.log(userEmail,password);               //to check userid,passwored in console
-        //console.log(a)       
     }
 
     return (
-        <Card>
-            <Card.Body>
+        <div>
                 <h2 className="text-center mb-4">BUS TRACKING SYSTEM</h2>
                 <h3 className="text-center">Login</h3>
                 <Form onSubmit={HandleSubmit}>
                     <Form.Group id="email">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} placeholder="Email" required />
+                        <Form.Control type="text" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} placeholder="Email" required />
                     </Form.Group>
                     <Form.Group id="password">
                         <Form.Label>Password</Form.Label>
@@ -39,9 +60,7 @@ function Login()
                     </Form.Group>
                     <Button type="submit" className="W-100" >Login</Button>
                 </Form>
-            </Card.Body>
-        </Card>
-        
+        </div>
     )
 }
 
