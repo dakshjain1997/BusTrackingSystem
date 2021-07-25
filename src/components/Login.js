@@ -1,15 +1,15 @@
 import React, {useContext, useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {AuthContext} from '../context/AuthContext'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import FirebaseConfig, {db} from "./FirebaseConfig";
 
 function Login()
  {
     const [userEmail, setUserEmail] = useState("")
     const [password, setPassword] = useState("")
-    const {isAuthenticated, setIsAuthenticated, setAuthToken, setUserType, setschoolId, schoolId, userType} = useContext(AuthContext);
-    const history = useHistory();
+    const {setIsAuthenticated, setAuthToken, setUserType, setschoolId, userType, redirect} = useContext(AuthContext);
+    // const history = useHistory();
 
     function HandleSubmit(e){
         e.preventDefault()
@@ -19,34 +19,25 @@ function Login()
             {
                 setIsAuthenticated(true);
                 setAuthToken(authToken);
-                // console.log(user.user.)
+
+                db.collection("users").onSnapshot(snapshot=>{
+                    snapshot.docs.forEach(element => {
+                        if(element.data().email===user.user.email){
+                            setUserType(element.data().userType)
+                            setschoolId(element.data().schoolId)
+                            redirect(element.data().userType);
+                        }
+                    });
+                })
             })
             .catch(error=>
             {
                 console.log(error.message)
             })
-
-        // FirebaseConfig.auth().onAuthStateChanged(user=>{
-        //     setAuthToken(user)})
-
-        db.collection("users").onSnapshot(snapshot=>{
-            snapshot.docs.forEach(element => {
-                if(element.data().email===authToken.email){
-                    setUserType(element.data().userType)
-                    setschoolId(element.data().schoolId)
-                    console.log(element.data())
-                    console.log(schoolId, element.data().userType, userType, element.data().schoolId)
-                }
-            });
-        })
-
-        if(isAuthenticated) {
-            history.push("/StudentForm");
-        }
     }
 
     return (
-        <div>
+        <div className="loginForm">
                 <h2 className="text-center mb-4">BUS TRACKING SYSTEM</h2>
                 <h3 className="text-center">Login</h3>
                 <Form onSubmit={HandleSubmit}>

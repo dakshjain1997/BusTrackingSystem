@@ -14,8 +14,36 @@ body {
 
 .studentForm{
   max-width: 500px;
-  padding: 0;
+  padding: 20px 0 20px 0;
   position: relative;
   margin: auto;
+  font-family: Mulish, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  /* identical to box height */
+
+  letter-spacing: 0.2px;
+
+  color: #000000;
+}
+
+.loginForm{
+  max-width: 500px;
+  padding: 20px 0 20px 0;
+  position: relative;
+  margin: auto;
+
+  font-family: Mulish, serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  /* identical to box height */
+
+  letter-spacing: 0.2px;
+
+  color: #000000;
 }
 
