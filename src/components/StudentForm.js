@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import {Form,Button} from 'react-bootstrap'       
 import {useUserContext} from './UserContext'
+import {db} from './FirebaseConfig'
 
     function StudentForm()
     {
         const [StudentName, setStudentName] = useState("")
         const [RollNumber, setRollNumber] = useState("")
         const [Address, setAddress] = useState("")
+        const [State, setState] = useState("")
         const [City, setCity] = useState("")
         const [PinCode, setPinCode] = useState("")
         const [ParentName, setParentName] = useState("")
-        const [ParentsPhoneNumber, setParentsPhoneNumber] = useState("")
-        const [ParentsEmail, setParentsEmail] = useState("")
+        const [ParentPhoneNumber, setParentPhoneNumber] = useState("")
+        const [ParentEmail, setParentEmail] = useState("")
 
         const {schoolId} = useUserContext()
        
@@ -23,6 +25,24 @@ import {useUserContext} from './UserContext'
         }
         function StudentInfo(){
             console.log(schoolId)
+            db.collection("School").doc(schoolId).collection("Students").doc(RollNumber)
+            .set({
+                StudentName:StudentName,
+                RollNumber:RollNumber,
+                Address:Address,
+                City:City,
+                State:State,
+                PinCode:PinCode,
+                ParentName:ParentName,
+                ParentPhoneNumber:ParentPhoneNumber,
+                ParentEmail:ParentEmail,
+            })
+            .then(() => {
+            alert(" Student Detail has been submiteed");
+            })
+            .catch((error) =>{
+                alert(error.message);
+            });
         }
         function test2(){
             console.log("is the school name")
@@ -50,24 +70,29 @@ import {useUserContext} from './UserContext'
                     <Form.Control type="text" value={City} onChange={(e)=>setCity(e.target.value)} placeholder="City" required />
                 </Form.Group>
 
-                <Form.Group id="PinCode">
+                <Form.Group id="State">
                     <Form.Label>State </Form.Label>
+                    <Form.Control type="text" value={State} onChange={(e)=>setState(e.target.value)} placeholder="110011" required />
+                </Form.Group>
+                
+                <Form.Group id="PinCode">
+                    <Form.Label>PinCode</Form.Label>
                     <Form.Control type="text" value={PinCode} onChange={(e)=>setPinCode(e.target.value)} placeholder="110011" required />
                 </Form.Group>
 
-                <Form.Group id="ParentsName">
+                <Form.Group id="ParentName">
                     <Form.Label>Parents Name</Form.Label>
                     <Form.Control type="text" value={ParentName} onChange={(e)=>setParentName(e.target.value)} placeholder="Parents Name" required />
                 </Form.Group>
 
-                <Form.Group id="ParentsPhoneNumber">
-                    <Form.Label>Parents Phone Number</Form.Label>
-                    <Form.Control type="text" value={ParentsPhoneNumber} onChange={(e)=>setParentsPhoneNumber(e.target.value)} placeholder="Parents Phone Number" required />
+                <Form.Group id="ParentPhoneNumber">
+                    <Form.Label>Parent Phone Number</Form.Label>
+                    <Form.Control type="text" value={ParentPhoneNumber} onChange={(e)=>setParentPhoneNumber(e.target.value)} placeholder="Parents Phone Number" required />
                 </Form.Group>
 
-                <Form.Group id="ParentsEmail">
-                    <Form.Label>Parents Email</Form.Label>
-                    <Form.Control type="text" value={ParentsEmail} onChange={(e)=>setParentsEmail(e.target.value)} placeholder="Parents Email" required />
+                <Form.Group id="ParentEmail">
+                    <Form.Label>Parent Email</Form.Label>
+                    <Form.Control type="text" value={ParentEmail} onChange={(e)=>setParentEmail(e.target.value)} placeholder="Parents Email" required />
                 </Form.Group>
 
                  <Button type="submit" className="W-100" >Login</Button>
