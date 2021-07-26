@@ -44,7 +44,7 @@ function App() {
 
                         <Route exact path="/viewStudent">
                             <Navbar/>
-                            <viewStudent/>
+                            <ViewStudent/>
                         </Route>
 
                         <Route exact path="/viewBusAttendant">
