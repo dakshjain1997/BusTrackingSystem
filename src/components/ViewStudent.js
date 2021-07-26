@@ -19,72 +19,28 @@ function ViewStudent(){
     
    // db.collection("School").doc(schoolId).collection("Bus")
     return(
-        <div className="viewDetails">
+        <table className="viewDetails">
         {/*//     <h1>Student Details</h1>*/}
+            <thead>
+            <tr>
+                <th>Browser</th>
+                <th>Sessions</th>
+                <th>Percentage</th>
+                <th>New Users</th>
+                <th>Avg. Duration</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Chrome</td>
+                <td>9,562</td>
+                <td>68.81%</td>
+                <td>7,895</td>
+                <td>01:07</td>
+            </tr>
+            </tbody>
 
-            <div className="row">
-
-                <div id="detail">
-                    <label className="title">Student Name</label>
-                    <label className="value">Student Name</label>
-                </div>
-
-                <div id="detail">
-                    <label>ROll Number</label>
-                    <label>ROll Number</label>
-                </div>
-
-                <div id="detail">
-                    <label>Address</label>
-                    <label>Address</label>
-                </div>
-
-                <div id="detail">
-                    <label>City</label>
-                    <label>City</label>
-                </div>
-
-                <div id="detail">
-                    <label>State </label>
-                    <label>State </label>
-                </div>
-
-                <div id="detail">
-                    <label>Country</label>
-                    <label>Country</label>
-                </div>
-
-                <div id="detail">
-                    <label>PicDropLocation</label>
-                    <label>PicDropLocation</label>
-                </div>
-
-                <div id="detail">
-                    <label>Bus Route</label>
-                    <label>Bus Route</label>
-                </div>
-
-                <div id="detail">
-                    <label>Bus Number</label>
-                    <label>Bus Number</label>
-                </div>
-
-                <div id="detail">
-                    <label>Parents Name</label>
-                    <label>Parents Name</label>
-                </div>
-
-                <div id="detail">
-                    <label>Parent Phone Number</label>
-                    <label>Parent Phone Number</label>
-                </div>
-
-                <div id="detail">
-                    <label>Parent Email</label>
-                    <label>Parent Email</label>
-                </div>
-            </div>
-        </div>
+        </table>
     )
 }
 export default ViewStudent    
