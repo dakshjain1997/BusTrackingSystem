@@ -8,6 +8,8 @@ import AuthContextProvider from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import ViewStudent from "./components/ViewStudent";
 import BusAttendentForm from "./components/BusAttenndentForm";
+import ParentPage from  "./components/Parent"
+import BusAttendantPage from "./components/BusAttendant"
 
 function App() {
     return (
@@ -54,6 +56,15 @@ function App() {
                             <Navbar/>
                             {/*    view buss */}
                         </Route>
+
+                        <Route exact path="/parentPage">
+                            <ParentPage/>
+                        </Route>
+
+                        <Route exact path="/busAttendantPage">
+                            <BusAttendantPage/>
+                        </Route>
+
                     </Switch>
                 </div>
             </AuthContextProvider>

@@ -13,20 +13,22 @@ function Login()
 
     function HandleSubmit(e){
         e.preventDefault()
+        console.log("on click login")
 
         const authToken = FirebaseConfig.auth().signInWithEmailAndPassword(userEmail,password)
             .then(user=>
             {
                 setIsAuthenticated(true);
                 setAuthToken(authToken);
-
+                console.log("user authenticated")
                 db.collection("Users").onSnapshot(snapshot=>{
                     snapshot.docs.forEach(element => {
                         //console.log("i")
                         if(element.data().emailId===user.user.email){
-                            //console.log("in iiff")
+                            
                             setUserType(element.data().userType)
                             setschoolId(element.data().schoolId)
+                            console.log(element.data().userType)
                             redirect(element.data().userType);
                         }
                     });
@@ -51,7 +53,7 @@ function Login()
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" required />
                     </Form.Group>
-                    <Button type="submit" className="W-100" >Login</Button>
+                    <Button type="submit" className="W-100" >submit</Button>
                 </Form>
         </div>
     )

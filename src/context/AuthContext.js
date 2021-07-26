@@ -14,9 +14,18 @@ const AuthContextProvider = (props) => {
 
     function redirect(userType){
 
-        if(userType === "School") {
-            console.log("trying to push in condition")
+        if(userType === "Parent"){
+            console.log("parent login")
+            History.push("/parentPage");
+        }
+        else if(userType === "School") {
+            console.log("school login")
             History.push("/dashboard");
+        }
+       
+        else if(userType === "BusAttendant"){
+            console.log("attendant login")
+            History.push("/busAttendantPage");
         }
     }
 
@@ -24,11 +33,12 @@ const AuthContextProvider = (props) => {
 
         db.collection("Users").doc(emailId).set({
             emailId: emailId,
-            UserType: userType,
+            userType: userType,
             schoolId: schoolId
         }).then(r  =>{
         })
-        FirebaseConfig.auth().createUserWithEmailAndPassword(emailId,"123456")
+        const  password="123456"
+        FirebaseConfig.auth().createUserWithEmailAndPassword(emailId,password)
     }
 
     const valuesToBePassed={

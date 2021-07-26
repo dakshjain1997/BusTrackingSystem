@@ -116,7 +116,7 @@ function StudentForm()
                 <Form.Control type="text" value={ParentEmail} onChange={(e)=>setParentEmail(e.target.value)} placeholder="Parents Email" required />
             </Form.Group>
 
-            <Button type="submit" className="W-100" >Login</Button>
+            <Button type="submit" className="W-100" >submit</Button>
         </Form>
         </div>
     )

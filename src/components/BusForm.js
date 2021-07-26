@@ -67,7 +67,7 @@ import {AuthContext} from '../context/AuthContext'
                 </Form.Group>
 
                 
-                 <Button type="submit" className="W-100" >Login</Button>
+                 <Button type="submit" className="W-100" >submit</Button>
             </Form>
             </div>
         )
