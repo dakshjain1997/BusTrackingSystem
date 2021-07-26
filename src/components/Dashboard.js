@@ -7,7 +7,7 @@ function Dashboard()
 
 
     return (
-        <p> Hi i am in dashboard</p>
+        <h1> welcome to school bus tracking system</h1>
 
     )
 }

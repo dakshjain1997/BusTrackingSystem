@@ -251,6 +251,9 @@ body {
   border-radius: 0 0 4px 0;
 
 }
+.dashboard{
+  padding: left 20%;  
+}
 
 /*.row h6{*/
 /*  top: 0;*/

@@ -73,7 +73,7 @@ import {AuthContext} from '../context/AuthContext'
                     <Form.Control type="text" value={AttendantId} onChange={(e)=>setAttendantId(e.target.value)} placeholder="110011" required />
                 </Form.Group>
 
-                 <Button type="submit" className="W-100" >Login</Button>
+                 <Button type="submit" className="W-100" >submit</Button>
             </Form>
             </div>
         )
