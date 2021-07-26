@@ -38,6 +38,7 @@ import {AuthContext} from '../context/AuthContext'
         }
         
         return(
+            <div className="infoForm">
             <Form onSubmit={HandleSubmit}>
 
                 <Form.Group id="DriverName">
@@ -68,6 +69,7 @@ import {AuthContext} from '../context/AuthContext'
                 
                  <Button type="submit" className="W-100" >Login</Button>
             </Form>
+            </div>
         )
     }
      export default BusAttendentForm

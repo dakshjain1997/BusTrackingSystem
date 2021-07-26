@@ -2,8 +2,6 @@ import React, {useContext, useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {db} from './FirebaseConfig'
 import {AuthContext} from '../context/AuthContext'
-import CreateUser from './CreateUser'
-
 
 function StudentForm()
 {
@@ -20,14 +18,12 @@ function StudentForm()
     const [ParentPhoneNumber, setParentPhoneNumber] = useState("")
     const [ParentEmail, setParentEmail] = useState("")
 
-    const {schoolId} = useContext(AuthContext)
-
-  
+    const {schoolId, createUser} = useContext(AuthContext)
 
     function HandleSubmit(e){
         e.preventDefault()
         StudentInfo()
-        CreateUser(ParentEmail,"parent")
+        createUser(ParentEmail,"Parent")
     }
 
     function StudentInfo(){
@@ -56,7 +52,8 @@ function StudentForm()
     }
 
     return(
-        <div className="studentForm">
+        <div className="infoForm">
+            <h1>Student Form</h1>
         <Form onSubmit={HandleSubmit}>
 
             <Form.Group id="studentName">

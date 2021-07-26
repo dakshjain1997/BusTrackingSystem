@@ -22,35 +22,35 @@ const Navbar = () => {
                 <div className="icon">
                     <span className="material-icons-outlined md-32 md-light">person_add</span>
                 </div>
-                <Link className="titleOption" to="/launchScan">Bus Attendant Details</Link>
+                <Link className="titleOption" to="/busAttendantForm">Bus Attendant Details</Link>
             </div>
 
             <div className="addBusDetails">
                 <div className="icon">
                     <span className="material-icons-outlined md-32 md-light">person_add</span>
                 </div>
-                <Link className="titleOption" to="/history">Bus Details</Link>
+                <Link className="titleOption" to="/busForm">Bus Details</Link>
             </div>
 
             <div className="viewStudentDetails">
                 <div className="icon">
                     <span className="material-icons-outlined md-32 md-light">person</span>
                 </div>
-                <Link className="titleOption" to="/recommendation">Student Details</Link>
+                <Link className="titleOption" to="/viewStudent">Student Details</Link>
             </div>
 
             <div className="viewBusAttendant">
                 <div className="icon">
                     <span className="material-icons-outlined md-32 md-light">person</span>
                 </div>
-                <Link className="titleOption" to="/settings">Bus Attendant Details</Link>
+                <Link className="titleOption" to="/viewBusAttendant">Bus Attendant Details</Link>
             </div>
 
             <div className="viewBusDetails">
                 <div className="icon">
                     <span className="material-icons-outlined md-32 md-light">person</span>
                 </div>
-                <Link className="titleOption" to="/settings">Bus Details</Link>
+                <Link className="titleOption" to="/viewBus">Bus Details</Link>
             </div>
         </div>
     );

@@ -1,37 +1,35 @@
-import React, { useState } from 'react'
+import React, {useContext, useState} from 'react'
 import {Form,Button} from 'react-bootstrap'
 import {db} from './FirebaseConfig'
-import CreateUser from './CreateUser'
 import {AuthContext} from '../context/AuthContext'
-        
+
     function BusAttendentForm(){
         const [AttendentName, setAttendentName] = useState("")
         const [AttendentEmailId, setAttendentEmailId] = useState("")
         const [BusNumber, setBusNumber] = useState("")
         const [BusRouteNumber, setBusRouteNumber] = useState("")
         const [PhoneNumber, setPhoneNumber] = useState("")
-        const [AttendentId, setAttendentId] = useState("")
+        const [AttendantId, setAttendantId] = useState("")
 
-        const {schoolId} = useUserContext()
-       
+        const {schoolId, createUser} = useContext(AuthContext)
+
          function HandleSubmit(e){
-            e.preventDefault()   
+            e.preventDefault()
             AttendentInfo()
-            CreateUser(AttendentEmailId,"parent")
-            
+            createUser(AttendentEmailId,"BusAttendant")
         }
 
        function AttendentInfo(){
             console.log(schoolId)
-            db.collection("Schools").doc(schoolId).collection("BusAttendant").doc(AttendentId)
+            db.collection("Schools").doc(schoolId).collection("BusAttendants").doc(AttendantId)
                 .set({
                     name:AttendentName,
                     emailId:AttendentEmailId,
                     busNumber:BusNumber,
                     routeNumber:BusRouteNumber,
                     contactNumber:PhoneNumber,
-                    attendentId:AttendentId
-                    
+                    attendantId:AttendantId
+
                 })
                 .then(() => {
                     alert(" Bus Detail has been submiteed");
@@ -40,11 +38,12 @@ import {AuthContext} from '../context/AuthContext'
                     alert(error.message);
                 });
         }
-        
+
         return(
+            <div className="infoForm">
             <Form onSubmit={HandleSubmit}>
 
-                <Form.Group id="AttendentName">
+                <Form.Group id="AttendantName">
                     <Form.Label>Attendent Name</Form.Label>
                     <Form.Control type="text" value={AttendentName} onChange={(e)=>setAttendentName(e.target.value)} placeholder="Attendent Name" required />
                 </Form.Group>
@@ -69,13 +68,15 @@ import {AuthContext} from '../context/AuthContext'
                     <Form.Control type="text" value={PhoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)} placeholder="110011" required />
                 </Form.Group>
 
-                <Form.Group id="AttendentId">
+                <Form.Group id="AttendantId">
                     <Form.Label>AttendentId</Form.Label>
-                    <Form.Control type="text" value={AttendentId} onChange={(e)=>setAttendentId(e.target.value)} placeholder="110011" required />
+                    <Form.Control type="text" value={AttendantId} onChange={(e)=>setAttendantId(e.target.value)} placeholder="110011" required />
                 </Form.Group>
 
                  <Button type="submit" className="W-100" >Login</Button>
             </Form>
+            </div>
         )
     }
-     export default BusAttendentForm
+
+    export default BusAttendentForm

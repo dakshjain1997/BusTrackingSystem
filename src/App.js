@@ -7,6 +7,7 @@ import BusForm from "./components/BusForm.js"
 import AuthContextProvider from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import ViewStudent from "./components/ViewStudent";
+import BusAttendentForm from "./components/BusAttenndentForm";
 
 function App() {
     return (
@@ -24,17 +25,35 @@ function App() {
                             <Dashboard/>
                         </Route>
 
-                        <Route path="/Studentform">
+                        <Route path="/studentform">
                             <Navbar/>
-                            <StudentForm/> 
-                            {/* <ViewStudent/> */}
+                            <StudentForm/>
                         </Route>
 
-                        <Route path="/BusForm">
+                        <Route exact path="/busAttendantForm">
+                            <Navbar/>
+                           <BusAttendentForm/>
+                        </Route>
+
+                        <Route exact path="/busForm">
                             <Navbar/>
                             <BusForm/>
                         </Route>
 
+                        <Route exact path="/viewStudent">
+                            <Navbar/>
+                            <viewStudent/>
+                        </Route>
+
+                        <Route exact path="/viewBusAttendant">
+                            <Navbar/>
+                        {/*    view buss attendant*/}
+                        </Route>
+
+                        <Route exact path="/viewBus">
+                            <Navbar/>
+                            {/*    view buss */}
+                        </Route>
                     </Switch>
                 </div>
             </AuthContextProvider>
