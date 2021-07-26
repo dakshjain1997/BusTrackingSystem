@@ -7,7 +7,7 @@ function Dashboard()
 
 
     return (
-        <h1> welcome to school bus tracking system</h1>
+        <h1 style={{padding:'0px 0px 0px 750px' }}> welcome to school bus tracking system</h1>
 
     )
 }
