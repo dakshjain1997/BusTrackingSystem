@@ -2,7 +2,6 @@ import React, {useContext} from 'react'
 import {db} from './FirebaseConfig'
 import {AuthContext} from '../context/AuthContext'
 
-
 function ViewStudent(){
 
     const {schoolId, isAuthenticated} = useContext(AuthContext)
@@ -19,7 +18,7 @@ function ViewStudent(){
     
    // db.collection("School").doc(schoolId).collection("Bus")
     return(
-        <table className="viewDetails">
+        <table className="rtable">
         {/*//     <h1>Student Details</h1>*/}
             <thead>
             <tr>
